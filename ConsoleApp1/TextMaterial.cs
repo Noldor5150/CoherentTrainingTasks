@@ -1,23 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Task001
 {
      class TextMaterial : TrainingMaterial 
     {
-        private string _text;
-        public string Text
-        {
-            get { return _text; }
-            set { if ( value.Length > 0 && value.Length <= 10000 ) _text = value; }
-        }
-        public TextMaterial (string text, Guid unicId) : base(unicId)
-        {
-            Text = text;
-        }
+        private string _textContent;
 
+        private const int MAX_TEXT_CONTENT_LENGTH = 10000;
+        public string TextContent
+        {
+            get
+            {
+                return _textContent;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value) || value.Length < MAX_TEXT_CONTENT_LENGTH)
+                {
+                    throw new ArgumentException("TextContent is out of range, or emty");
+                }
+                else
+                {
+                    _textContent = value;
+                }
+            }
+        }
+        public TextMaterial(string textContent, string description, Guid uniqueId): base(description, uniqueId)
+        {
+            TextContent = textContent;
+        }
     }
 }

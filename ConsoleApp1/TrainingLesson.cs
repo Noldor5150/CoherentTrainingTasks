@@ -1,36 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Task001
 {
-     class TrainingLesson
+     class TrainingLesson : EntityTraining
     {
         private TrainingMaterial[] _arrayOfTrainingMaterials;
-
-        private Guid _unicId;
-
-        public enum Type { VideoLesson,TextLesson };
-        public Guid UnicId
+        public enum Type { VideoLesson, TextLesson };
+        public TrainingLesson (TrainingMaterial[] arrayOfTrainingMaterials, string description, Guid uniqueId) : base(description, uniqueId)
         {
-            get { return _unicId; }
-            set { if (value.ToByteArray().Length <= 256) _unicId = value; }
+            _arrayOfTrainingMaterials = arrayOfTrainingMaterials;
         }
-
-        public Type GetLessonType(  )
+        public Type GetLessonType(TrainingMaterial[] arrayOfTrainingMaterials)
         {
-            
-            foreach( var material in _arrayOfTrainingMaterials )
+
+            foreach (var material in arrayOfTrainingMaterials)
             {
                 if (material is VideoMaterial)
                 {
                     return Type.VideoLesson;
                 }
-               
             }
             return Type.TextLesson;
         }
+
+        public bool Equals(TrainingMaterial other)
+        {
+            return other != null &&
+                   UniqueId == other.UniqueId;
+        }
+
+
     }
 }
