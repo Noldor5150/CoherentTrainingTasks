@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task001
 {
-    class VideoMaterial : TrainingMaterial
+  class VideoMaterial : TrainingMaterial
     {
         private string _uriVideoContent;
         

@@ -1,18 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Task001
 {
     class TrainingMaterial
     {
         private Guid _unicId;
+
+        private const int LENGHT_MAX = 256;
         public Guid UnicId
         {
-            get { return _unicId; }
-            set { if (value.ToByteArray().Length <= 256) _unicId = value; }
+            get
+            { 
+                return _unicId;
+            }
+            set 
+            { 
+                if (value.ToByteArray().Length <= LENGHT_MAX)
+                {
+                    _unicId = value;
+                }
+            }
         }
         public TrainingMaterial (Guid umicId)
         {

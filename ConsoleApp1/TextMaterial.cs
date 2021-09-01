@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task001
 {
-    class TextMaterial : TrainingMaterial 
+     class TextMaterial : TrainingMaterial 
     {
         private string _text;
         public string Text

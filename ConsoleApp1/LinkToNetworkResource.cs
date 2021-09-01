@@ -17,11 +17,9 @@ namespace Task001
             set { if (value.Length > 0) _uri = value; }
         }
         public enum Type { Unknown, Html, Image, Audio, Video};
-        public string LinkType
-        {
-            get { return _linkType; }
-            set { if (Enum.IsDefined(typeof(Type), value)) _linkType = value; }
-        }
+        
+        public Type LinkType { get; private set; }
+    
 
         public LinkToNetworkResource (string uri, string linkType, Guid unicId) : base(unicId)
         {
