@@ -3,7 +3,7 @@
 
 namespace Task001
 {
-     class TrainingLesson : EntityTraining, IVersionable
+     class TrainingLesson : EntityTraining, IVersionable, ICloneable
     {
         public TrainingMaterial[] ArrayOfTrainingMaterials { get; set; }
         public byte[] Version { get; set; }
@@ -35,6 +35,17 @@ namespace Task001
         public void InstallVersion(byte[] array)
         {
             throw new NotImplementedException();
+        }
+        public object Clone()
+        {
+            //return this.MemberwiseClone(); 
+            TrainingLesson newLesson = (TrainingLesson)this.MemberwiseClone();
+            newLesson.ArrayOfTrainingMaterials = (TrainingMaterial[])this.MemberwiseClone();
+            newLesson.Version = (byte[])this.MemberwiseClone();
+            newLesson.Description = (string)this.MemberwiseClone();
+            newLesson.UniqueId = (Guid)this.MemberwiseClone();
+            return newLesson;
+
         }
     }
 }

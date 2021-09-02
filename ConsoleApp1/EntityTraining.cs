@@ -5,7 +5,6 @@ namespace Task001
 {
     class EntityTraining
     {
-
         private string _description;
 
         private const int DESCRIPTION_LENGHT_MAX = 256;
@@ -28,19 +27,15 @@ namespace Task001
                 }
             }
         }
-        public Guid UniqueId { get; private set; }
-
+        public Guid UniqueId { get; set; }
         public EntityTraining(string description, Guid uniqueId)
         {
             Description = description;
             UniqueId = uniqueId;
         }
-
         public override string ToString()
         {
             return _description;
         }
-
-
     }
 }
