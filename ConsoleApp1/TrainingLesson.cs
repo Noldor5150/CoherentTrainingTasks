@@ -5,13 +5,33 @@ namespace Task001
 {
      class TrainingLesson : EntityTraining, IVersionable, ICloneable
     {
+        private const int VERSION_EXACT_LENGTH = 8;
+
+        private byte[] _version;
+        public byte[] Version 
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                if (value.Length == VERSION_EXACT_LENGTH)
+                {
+                    _version = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Version is not 8bytes!!!");
+                }
+            }
+        }
         public TrainingMaterial[] ArrayOfTrainingMaterials { get; set; }
-        public byte[] Version { get; set; }
         public enum Type { VideoLesson, TextLesson };
         public TrainingLesson (TrainingMaterial[] arrayOfTrainingMaterials, byte[] version, string description, Guid uniqueId) : base(description, uniqueId)
         {
             ArrayOfTrainingMaterials = arrayOfTrainingMaterials;
-            Version = version;
+            _version = version;
         }
         public Type GetLessonType(TrainingMaterial[] arrayOfTrainingMaterials)
         {
@@ -23,18 +43,6 @@ namespace Task001
                 }
             }
             return Type.TextLesson;
-        }
-        public bool Equals(TrainingMaterial other)
-        {
-            return other != null && UniqueId == other.UniqueId;
-        }
-        public void ReadVersion(byte[] array)
-        {
-            throw new NotImplementedException();
-        }
-        public void InstallVersion(byte[] array)
-        {
-            throw new NotImplementedException();
         }
         public object Clone()
         {

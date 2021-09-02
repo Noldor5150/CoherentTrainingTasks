@@ -37,5 +37,14 @@ namespace Task001
         {
             return _description;
         }
+
+        public override bool Equals(object other)
+        {
+            if(other == null || !(other is EntityTraining))
+            {
+                return false;
+            }
+            return (other as EntityTraining).UniqueId == UniqueId;
+        }
     }
 }

@@ -6,10 +6,31 @@ namespace Task001
   class VideoMaterial : TrainingMaterial, IVersionable
     {
         private string _uriVideoContent;
+
+        private const int VERSION_EXACT_LENGTH = 8;
+
+        private byte[] _version;
+        public byte[] Version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                if (value.Length == VERSION_EXACT_LENGTH)
+                {
+                    _version = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Version is not 8bytes!!!");
+                }
+            }
+        }
         public string UriPictureContent { get; private set; }
         public enum  Format { Unknown, Avi, Mp4, Flv };
         public Format VideoFormat { get; private set; }
-        public  byte[] Version { get; set; }
         public string UriVideoContent
         {
             get 
@@ -35,15 +56,7 @@ namespace Task001
             VideoFormat = videoFormat;
             UriSplashScreen = uriSplashScreen;
             UriPictureContent = uriPictureContent;
-            Version = version;
-        }
-        public void ReadVersion(byte[] array)
-        {
-            throw new NotImplementedException();
-        }
-        public void InstallVersion(byte[] array)
-        {
-            throw new NotImplementedException();
+            _version = version;
         }
     }
 }
