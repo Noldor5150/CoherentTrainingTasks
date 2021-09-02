@@ -7,7 +7,7 @@ namespace Task001
     {
         private string _textContent;
 
-        private const int MAX_TEXT_CONTENT_LENGTH = 10000;
+        private const int TEXT_CONTENT_MAX_LENGTH = 10000;
         public string TextContent
         {
             get
@@ -16,9 +16,9 @@ namespace Task001
             }
             set
             {
-                if (String.IsNullOrEmpty(value) || value.Length < MAX_TEXT_CONTENT_LENGTH)
+                if ( String.IsNullOrEmpty(value) || value.Length > TEXT_CONTENT_MAX_LENGTH )
                 {
-                    throw new ArgumentException("TextContent is out of range, or emty");
+                    throw new ArgumentException( "TextContent is out of range, or emty" );
                 }
                 else
                 {
@@ -26,7 +26,7 @@ namespace Task001
                 }
             }
         }
-        public TextMaterial(string textContent, string description, Guid uniqueId): base(description, uniqueId)
+        public TextMaterial( string textContent, string description, Guid uniqueId): base(description, uniqueId )
         {
             TextContent = textContent;
         }
