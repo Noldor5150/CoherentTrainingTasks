@@ -18,7 +18,7 @@ namespace Task001
             {
                 if ( String.IsNullOrEmpty(value) || value.Length > TEXT_CONTENT_MAX_LENGTH )
                 {
-                    throw new ArgumentException( "TextContent is out of range, or emty" );
+                    throw new ArgumentException( "TextContent is out of range, or empty" );
                 }
                 else
                 {

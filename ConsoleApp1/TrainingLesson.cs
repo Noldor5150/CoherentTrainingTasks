@@ -3,17 +3,18 @@
 
 namespace Task001
 {
-     class TrainingLesson : EntityTraining
+     class TrainingLesson : EntityTraining, IVersionable
     {
-        private TrainingMaterial[] _arrayOfTrainingMaterials;
+        public TrainingMaterial[] ArrayOfTrainingMaterials { get; set; }
+        public byte[] Version { get; set; }
         public enum Type { VideoLesson, TextLesson };
-        public TrainingLesson (TrainingMaterial[] arrayOfTrainingMaterials, string description, Guid uniqueId) : base(description, uniqueId)
+        public TrainingLesson (TrainingMaterial[] arrayOfTrainingMaterials, byte[] version, string description, Guid uniqueId) : base(description, uniqueId)
         {
-            _arrayOfTrainingMaterials = arrayOfTrainingMaterials;
+            ArrayOfTrainingMaterials = arrayOfTrainingMaterials;
+            Version = version;
         }
         public Type GetLessonType(TrainingMaterial[] arrayOfTrainingMaterials)
         {
-
             foreach (var material in arrayOfTrainingMaterials)
             {
                 if (material is VideoMaterial)
@@ -23,13 +24,17 @@ namespace Task001
             }
             return Type.TextLesson;
         }
-
         public bool Equals(TrainingMaterial other)
         {
-            return other != null &&
-                   UniqueId == other.UniqueId;
+            return other != null && UniqueId == other.UniqueId;
         }
-
-
+        public void ReadVersion(byte[] array)
+        {
+            throw new NotImplementedException();
+        }
+        public void InstallVersion(byte[] array)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
