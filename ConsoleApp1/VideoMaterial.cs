@@ -1,9 +1,9 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace Task001
 {
-  class VideoMaterial : TrainingMaterial, IVersionable
+  class VideoMaterial : TrainingMaterial, IVersionable, ICloneable
     {
         private string _uriVideoContent;
 
@@ -50,13 +50,18 @@ namespace Task001
             }
         }
         public string UriSplashScreen { get; set; }
-        public VideoMaterial (string uriVideoContent, Format videoFormat, byte[] version, string uriSplashScreen, string uriPictureContent,string description, Guid uniqueId) : base(description,uniqueId)
+        public VideoMaterial ( string uriVideoContent, Format videoFormat, byte[] version, string uriSplashScreen, string uriPictureContent,string description, Guid uniqueId ) : base( description,uniqueId )
         {
             UriVideoContent = uriVideoContent;
             VideoFormat = videoFormat;
             UriSplashScreen = uriSplashScreen;
             UriPictureContent = uriPictureContent;
             _version = version;
+        }
+        public object Clone()
+        {
+           VideoMaterial  newVideoMaterial = ( VideoMaterial )this.MemberwiseClone();
+           return newVideoMaterial;
         }
     }
 }

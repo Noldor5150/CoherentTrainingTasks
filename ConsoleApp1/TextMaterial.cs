@@ -3,7 +3,7 @@
 
 namespace Task001
 {
-     class TextMaterial : TrainingMaterial 
+     class TextMaterial : TrainingMaterial, ICloneable 
     {
         private string _textContent;
 
@@ -16,7 +16,7 @@ namespace Task001
             }
             set
             {
-                if ( String.IsNullOrEmpty(value) || value.Length > TEXT_CONTENT_MAX_LENGTH )
+                if ( String.IsNullOrEmpty( value ) || value.Length > TEXT_CONTENT_MAX_LENGTH )
                 {
                     throw new ArgumentException( "TextContent is out of range, or empty" );
                 }
@@ -26,9 +26,14 @@ namespace Task001
                 }
             }
         }
-        public TextMaterial( string textContent, string description, Guid uniqueId): base(description, uniqueId )
+        public TextMaterial ( string textContent, string description, Guid uniqueId ): base ( description, uniqueId )
         {
             TextContent = textContent;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

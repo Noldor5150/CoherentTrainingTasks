@@ -3,7 +3,7 @@
 
 namespace Task001
 {
-    class LinkToNetworkResource : TrainingMaterial
+    class LinkToNetworkResource : TrainingMaterial, ICloneable
     {
         private string _uri;
         public string Uri
@@ -26,10 +26,15 @@ namespace Task001
         }
         public enum Type { Unknown, Html, Image, Audio, Video};
         public Type LinkType { get; private set; }
-        public LinkToNetworkResource (string uri, Type linkType, string description, Guid uniqueId) : base(description,uniqueId)
+        public LinkToNetworkResource ( string uri, Type linkType, string description, Guid uniqueId ) : base ( description,uniqueId ) 
         {
             Uri = uri;
             LinkType = linkType;
+        }
+        public object Clone()
+        {
+            LinkToNetworkResource newNetworkResource = ( LinkToNetworkResource )this.MemberwiseClone();
+            return newNetworkResource;
         }
     }
 }

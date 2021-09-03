@@ -7,16 +7,17 @@ namespace Task001
     {
         private string _description;
 
-        private const int DESCRIPTION_LENGHT_MAX = 256;
+        private const int DESCRIPTION_MAX_LENGTH = 256;
         public string Description
         {
             get
+
             {
                 return _description;
             }
             set
             {
-                if ( String.IsNullOrEmpty( value ) || value.Length <= DESCRIPTION_LENGHT_MAX )
+                if ( String.IsNullOrEmpty( value ) || value.Length <= DESCRIPTION_MAX_LENGTH )
                 {
                     _description =  value;
                 }
@@ -28,7 +29,7 @@ namespace Task001
             }
         }
         public Guid UniqueId { get; set; }
-        public EntityTraining(string description, Guid uniqueId)
+        public EntityTraining ( string description, Guid uniqueId )
         {
             Description = description;
             UniqueId = uniqueId;
@@ -38,13 +39,13 @@ namespace Task001
             return _description;
         }
 
-        public override bool Equals(object other)
+        public override bool Equals ( object other )
         {
-            if(other == null || !(other is EntityTraining))
+            if ( other == null || !( other is EntityTraining ))
             {
                 return false;
             }
-            return (other as EntityTraining).UniqueId == UniqueId;
+            return ( other as EntityTraining ).UniqueId == UniqueId;
         }
     }
 }

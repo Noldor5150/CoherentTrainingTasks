@@ -46,12 +46,15 @@ namespace Task001
         }
         public object Clone()
         {
-            //return this.MemberwiseClone(); 
-            TrainingLesson newLesson = (TrainingLesson)this.MemberwiseClone();
-            newLesson.ArrayOfTrainingMaterials = (TrainingMaterial[])this.MemberwiseClone();
-            newLesson.Version = (byte[])this.MemberwiseClone();
-            newLesson.Description = (string)this.MemberwiseClone();
-            newLesson.UniqueId = (Guid)this.MemberwiseClone();
+            
+            TrainingLesson newLesson = ( TrainingLesson )this.MemberwiseClone();
+            var newTrainingMaterialArray = new TrainingMaterial[ArrayOfTrainingMaterials.Length];
+            for ( var i = 0; i < ArrayOfTrainingMaterials.Length; i++ )
+            {
+                newTrainingMaterialArray[i] = ( TrainingMaterial ) ArrayOfTrainingMaterials[i].Clone();
+
+            }
+            newLesson.ArrayOfTrainingMaterials = newTrainingMaterialArray;
             return newLesson;
 
         }
