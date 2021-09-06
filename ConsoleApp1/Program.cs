@@ -33,6 +33,8 @@ namespace Task001
             lesson.ArrayOfTrainingMaterials = list;
             Console.WriteLine(lesson.ArrayOfTrainingMaterials[0].Description);
             Console.WriteLine(lesson2.ArrayOfTrainingMaterials[0].Description);
+            Console.WriteLine(lesson2.GetLessonType(list));
+            Console.WriteLine(lesson.GetLessonType(list2));
             
         }
     }

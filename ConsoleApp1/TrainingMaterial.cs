@@ -4,7 +4,7 @@
 namespace Task001
 {
     /// <summary>
-    /// Empty class just for upcasting types
+    /// Intermediate class for separation of TrainingLesson;
     /// </summary>
     class TrainingMaterial : EntityTraining, ICloneable
 
@@ -13,6 +13,11 @@ namespace Task001
         {
 
         }
+
+        /// <summary>
+        /// implementing ICLoneable;
+        /// </summary>
+        /// <returns> returns a deep copy of itself </returns>
         public object Clone()
         {
             return this.MemberwiseClone();

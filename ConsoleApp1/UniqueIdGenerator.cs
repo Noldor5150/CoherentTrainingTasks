@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Class helper for Guid Id generation;
+/// </summary>
 
 namespace Task001
 {

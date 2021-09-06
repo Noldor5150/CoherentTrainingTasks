@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace Task001
 {
-  class VideoMaterial : TrainingMaterial, IVersionable, ICloneable
+    /// <summary>
+    /// Class for implementing video material, inherits from TrainingMaterialand and implements ICloneable and IVersionable interfaces;
+    /// </summary>
+    class VideoMaterial : TrainingMaterial, IVersionable, ICloneable
     {
         private string _uriVideoContent;
 
@@ -49,7 +52,18 @@ namespace Task001
                 }
             }
         }
-        public string UriSplashScreen { get; set; }
+        public string UriSplashScreen { get; private set; }
+
+        /// <summary>
+        /// Class parametrized constructor;
+        /// </summary>
+        /// <param name="uriVideoContent"> string for description of uri of video content </param>
+        /// <param name="videoFormat">enumerated video format, type Format </param>
+        /// <param name="version"> byte array, implemetation of IVersionable interface, limited by const int VERSION_EXACT_LENGTH </param>
+        /// <param name="uriSplashScreen"> string dor description of uri splash screen </param>
+        /// <param name="uriPictureContent"> string dor description of uri picture content </param>
+        /// <param name="description"> string for description of video material </param>
+        /// <param name="uniqueId"> Guid type ID </param>
         public VideoMaterial ( string uriVideoContent, Format videoFormat, byte[] version, string uriSplashScreen, string uriPictureContent,string description, Guid uniqueId ) : base( description,uniqueId )
         {
             UriVideoContent = uriVideoContent;
@@ -58,10 +72,14 @@ namespace Task001
             UriPictureContent = uriPictureContent;
             _version = version;
         }
+
+        /// <summary>
+        /// implementing ICLoneable;
+        /// </summary>
+        /// <returns> returns a deep copy of itself </returns>
         public object Clone()
         {
-           VideoMaterial  newVideoMaterial = ( VideoMaterial )this.MemberwiseClone();
-           return newVideoMaterial;
+            return this.MemberwiseClone();
         }
     }
 }
